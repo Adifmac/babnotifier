@@ -1,0 +1,384 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A responsive, lightweight notification replacement for JavaScript's alerts">
+	<title>Simple Notifyer</title>
+	<script src="BabNotifier.min.js"></script>
+	<link rel="stylesheet" href="BabNotifier.min.css">
+	<style>
+		body {
+			font-family: Montserrat, -apple-system, Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial, sans-serif;
+			font-size: 18px;
+			text-align: center;
+			color: #555;
+		}
+		button {
+			margin: 0.5em;
+			padding: 0.9em 2.1875em;
+			border-radius: 0.1875em;
+			color: #fff;background-color: #4384bc;
+			border: 0;
+			font-size: 1.125em;
+			font-weight: 500;
+			white-space: nowrap;
+			min-width: 245px;
+			cursor:pointer;
+		}
+		h1 {
+			font-size: 1.7em;
+		}
+		h2 {
+			margin-top:4em;
+			margin-bottom:2em;
+		}
+		.gray {
+			width:100%;
+			background-color: #4c4c4c;
+			aspect-ratio: 16 / 6;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.sec {
+			max-width: 950px;
+			margin: auto;
+		}
+		.sec img {
+			max-width: 300px;
+		}
+		.spacer {
+			margin-top:4em;
+			margin-bottom:2em;
+		}
+		.mrpre {
+			width: 628px;
+			display: inline-block;
+			vertical-align: top;
+		}
+		.mrpre code {
+			display: block;
+			padding: 0.5em;
+			overflow: hidden !important;
+			border-radius: 0.3125em;
+			font-family: "Source Code Pro", monospace;
+			font-size: 0.8em;
+			text-align: left;
+			line-height: 1.5;
+		}
+		.mrpre code.hljs {
+			display: block;
+			overflow-x: auto;
+			padding: 1em;
+		}
+		.hljs {
+			color: #abb2bf;
+			background: #282c34;
+		}
+		.hljs-addition, .hljs-attribute, .hljs-meta .hljs-string, .hljs-regexp, .hljs-string {
+			color: #98c379;
+		}
+		.hljs-bullet, .hljs-link, .hljs-meta, .hljs-selector-id, .hljs-symbol, .hljs-title {
+			color: #61aeee;
+		}
+		.hljs-built_in, .hljs-class .hljs-title, .hljs-title.class_ {
+			color: #e6db7b;
+		}
+		.hljs-attr,  .hljs-selector-attr, .hljs-selector-class, .hljs-selector-pseudo, .hljs-template-variable, .hljs-type, .hljs-variable {
+			color: #d19a66;
+		}
+		.hljs-doctag, .hljs-formula, .hljs-keyword, .hljs-number {
+			color: #c678dd;
+		}
+		.ui {
+			width: 300px;
+			margin: 0 auto;
+			text-align: center;
+			display: inline-block;
+			vertical-align: top;
+		}
+		.examples {
+			max-width: 950px;
+			margin: 0 auto;
+			padding-left: 0;
+			list-style-type: none;
+			text-align: left;
+		}
+		.examples li {
+			margin-top: 1em;
+		}
+		.github-corner {
+			position: fixed;
+			top: 0;
+			right: 0;
+		}
+		.github-corner:hover .octo-arm {
+			animation: octocat-wave 560ms ease-in-out
+		}
+	
+		@keyframes octocat-wave {
+	
+			0%,
+			100% {
+				transform: rotate(0)
+			}
+	
+			20%,
+			60% {
+				transform: rotate(-25deg)
+			}
+	
+			40%,
+			80% {
+				transform: rotate(10deg)
+			}
+		}
+	
+		@media (max-width:500px) {
+			.github-corner:hover .octo-arm {
+				animation: none
+			}
+	
+			.github-corner .octo-arm {
+				animation: octocat-wave 560ms ease-in-out
+			}
+			.ui,
+			.mrpre {
+				width: 100%;
+			}
+
+		}
+	</style>
+	<script>
+		const notifier = new BabNotifier();
+		function popexample(){
+			notifier.notify({
+				title: 'Hey there',
+				html: 'This is a simple notofication window. It will close in 6 seconds.',
+				type: 'normal',
+				timer: 6000
+			});
+		}
+		function popme() {
+			notifier.notify({
+				title: 'Hey there',
+				html: 'This popup will close after 6 seconds. At least that is what it should do acording to the code, and I wrote the code, so I have an idea what it should do. Oh, <a href="https://www.google.com">this is a link</a>.',
+				timer: 6000
+			});
+		}
+		function popmeNoTimer() {
+			notifier.notify({
+				title: 'Hey there',
+				body: 'This will stay open untill clicked ',
+			});
+		}
+		function popmeNoTimerFail() {
+			notifier.notify({
+				title: 'Hey there!',
+				icon: 'error',
+				body: 'This will stay open untill clicked ',
+			});
+		}
+		function popmeNoTimerSuccess() {
+			notifier.notify({
+				title: 'Yes. This worked perfectly',
+				icon: 'success',
+				body: 'This will stay open untill clicked ',
+			});
+		}
+		function popToaster() {
+			notifier.notify({
+				type: 'toaster',
+				title: 'Settings were saved',
+
+			});
+		}
+		function popToasterSuccess() {
+			notifier.notify({
+				title: 'Settings were saved',
+				icon: 'success',
+				type: 'toaster',
+			});
+		}
+		function popToasterFail() {
+			notifier.notify({
+				title: 'Something went wrong',
+				icon: 'error',
+				type: 'toaster',
+			});
+		}
+	</script>
+</head>
+<body>
+	<a href="https://github.com/adifmac/babnotifier" class="github-corner" aria-label="View source on GitHub" title="View source on GitHub"><svg width="80" height="80"
+			viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;"
+			aria-hidden="true">
+			<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+			<path
+				d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+				fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+			<path
+				d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+				fill="currentColor" class="octo-body"></path>
+		</svg></a>
+	<div class="sec spacer">
+		<div class="gray">
+			<picture class="me_picture">
+				<source type="image/webp" srcset="babnotifier_600.webp" />
+				<source type="image/jpeg" srcset="babnotifier_600.jpg" />
+				<img class="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+					alt="BabNotifier - lightweight and simple notifications" />
+			</picture>
+		</div>
+		<h1>A simple replacement for Javascript's alerts</h1>
+		<p>Responsive, zero dependencies (vanilla), lightweight (2.8kB)</p>
+		<button onclick="popexample()">Try me</button>
+	</div>
+	
+
+
+
+
+
+	<h2>Usage</h2>
+	<ul class="examples">
+		<li>
+			<div class="ui">
+				load
+			</div>
+			<div class="mrpre">
+				<code class="hljs">
+					&#60;<span class="hljs-title function_">script</span> <span class="hljs-attr">src</span>="<span class="hljs-title class_">BabNotifier.min.js</span>"&#62;&#60;/<span class="hljs-title function_">script</span>><br>
+					&#60;<span class="hljs-title function_">link</span> <span class="hljs-attr">rel</span>="<span class="hljs-title class_">stylesheet</span>" <span class="hljs-attr">href</span>="<span class="hljs-title class_">BabNotifier.min.css</span>">
+				</code>
+			</div>
+		</li>
+		<li>
+			<div class="ui">
+				initialize
+			</div>
+			<div class="mrpre">
+				<code class="hljs">
+					<span class="hljs-keyword">const</span> <span class="hljs-title class_">notifier</span> = new <span class="hljs-title function_">BabNotifier</span>();
+				</code>
+			</div>
+		</li>
+	</ul>
+	<h2>Examples</h2>
+	<ul class="examples">
+		<li>
+			<div class="ui">
+				<button onclick="popmeNoTimer()">Simple Notifier</button>
+			</div>
+			<div class="mrpre">
+				<code class="hljs">
+					<span class="hljs-title class_">notifier</span>.<span class="hljs-title function_">notify</span>({<br>
+					&nbsp; <span class="hljs-attr">title</span>: <span class="hljs-string">'Hey there'</span>,<br>
+					&nbsp; <span class="hljs-attr">body</span>: <span class="hljs-string">'This will stay open untill clicked' </span><br>
+					});
+				</code>
+			</div>
+		</li>
+		<li>
+			<div class="ui">
+				<button onclick="popmeNoTimerSuccess()">Notifier Success</button>
+			</div>
+			<div class="mrpre">
+				<code class="hljs">
+					<span class="hljs-title class_">notifier</span>.<span class="hljs-title function_">notify</span>({<br>
+					&nbsp; <span class="hljs-attr">title</span>: <span class="hljs-string">'Hey there'</span>,<br>
+					&nbsp; <span class="hljs-attr">icon</span>: <span class="hljs-string">'success'</span>,<br>
+					&nbsp; <span class="hljs-attr">body</span>: <span class="hljs-string">'This will stay open untill clicked' </span><br>
+					});
+				</code>
+			</div>
+		</li>
+		<li>
+			<div class="ui">
+				<button onclick="popmeNoTimerFail()">Notifier Error</button>
+			</div>
+			<div class="mrpre">
+				<code class="hljs">
+					<span class="hljs-title class_">notifier</span>.<span class="hljs-title function_">notify</span>({<br>
+					&nbsp; <span class="hljs-attr">title</span>: <span class="hljs-string">'Hey there!'</span>,<br>
+					&nbsp; <span class="hljs-attr">icon</span>: <span class="hljs-string">'error'</span>,<br>
+					&nbsp; <span class="hljs-attr">body</span>: <span class="hljs-string">'This will stay open untill clicked' </span><br>
+					});
+				</code>
+			</div>
+		</li>
+		<li>
+			<div class="ui">
+				<button onclick="popme()">Notifier Timer</button>
+			</div>
+			<div class="mrpre">
+				<code class="hljs">
+					<span class="hljs-title class_">notifier</span>.<span class="hljs-title function_">notify</span>({<br>
+					&nbsp; <span class="hljs-attr">title</span>: <span class="hljs-string">'Hey there'</span>,<br>
+					&nbsp; <span class="hljs-attr">html</span>:<br>
+					&nbsp; &nbsp; <span class="hljs-string">'This popup will close after 3 seconds. ' </span>+<br>
+					&nbsp; &nbsp; <span class="hljs-string">'at least that is what it should do acording to the code, ' </span>+<br>
+					&nbsp; &nbsp; <span class="hljs-string">'and I wrote the code, so I have an idea what it should do. ' </span>+<br>
+					&nbsp; &nbsp; <span class="hljs-string">'Oh, &#60;a href="https://www.google.com"&#62;this is a link&#60;/a&#62;.'</span>,<br>
+					&nbsp; <span class="hljs-attr">timer</span>: <span class="hljs-number">6000</span><br>
+					});
+				</code>
+			</div>
+		</li>
+		<li>
+			<div class="ui">
+				<button onclick="popToaster()">Simple Toaster </button>
+			</div>
+			<div class="mrpre">
+				<code class="hljs">
+					<span class="hljs-title class_">notifier</span>.<span class="hljs-title function_">notify</span>({<br>
+					&nbsp; <span class="hljs-attr">type</span>: <span class="hljs-string">'toaster'</span>,<br>
+					&nbsp; <span class="hljs-attr">title</span>: <span class="hljs-string">'Settings were saved' </span><br>
+					});
+				</code>
+			</div>
+		</li>
+		<li>
+			<div class="ui">
+				<button onclick="popToasterSuccess()">Toaster Success</button>
+			</div>
+			<div class="mrpre">
+				<code class="hljs">
+					<span class="hljs-title class_">notifier</span>.<span class="hljs-title function_">notify</span>({<br>
+					&nbsp; <span class="hljs-attr">type</span>: <span class="hljs-string">'toaster'</span>,<br>
+					&nbsp; <span class="hljs-attr">icon</span>: <span class="hljs-string">'success'</span>,<br>
+					&nbsp; <span class="hljs-attr">title</span>: <span class="hljs-string">'Settings were saved' </span><br>
+					});
+				</code>
+			</div>
+		</li>
+		<li>
+			<div class="ui">
+				<button onclick="popToasterFail()">Toaster Error</button>
+			</div>
+			<div class="mrpre">
+				<code class="hljs">
+					<span class="hljs-title class_">notifier</span>.<span class="hljs-title function_">notify</span>({<br>
+					&nbsp; <span class="hljs-attr">type</span>: <span class="hljs-string">'toaster'</span>,<br>
+					&nbsp; <span class="hljs-attr">icon</span>: <span class="hljs-string">'error'</span>,<br>
+					&nbsp; <span class="hljs-attr">title</span>: <span class="hljs-string">'Something went wrong' </span><br>
+					});
+				</code>
+			</div>
+		</li>
+
+
+	</ul>
+
+
+	<div class="sec spacer">
+		<p>
+			<a href="https://github.com/adifmac/babnotifier" title="View source on GitHub" >View source on GitHub</a>
+		</p>
+		<p>
+			* Currently in use in production at <a href="https://www.bablab.com" title="BabNotifier in action at bablab.com" target="_blank">Bablab.com</a> - a portfolio websites platform for photographers and artists.
+		</p>
+	</div>
+
+</body>
+</html>
